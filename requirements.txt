@@ -1,0 +1,7 @@
+requests
+mutagen
+Pillow
+langdetect
+python-dotenv
+musicbrainzngs
+pyacoustid
