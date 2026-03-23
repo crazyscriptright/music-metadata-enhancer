@@ -1,0 +1,37 @@
+name: Tools Checkup
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Syntax compile check
+        run: |
+          python -m compileall -q .
+
+      - name: Critical module check
+        run: |
+          python -m py_compile music_metadata_enhancer/enrich_metadata.py music_metadata_enhancer/fix_album_art.py music_metadata_enhancer/picard_fallback_enricher.py music_metadata_enhancer/standalone_compat.py
+
+      - name: CLI help smoke test
+        run: |
+          python music_metadata_enhancer/enrich_metadata.py --help
+          python music_metadata_enhancer/fix_album_art.py --help

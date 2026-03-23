@@ -1,0 +1,45 @@
+# Virtual environments
+venv/
+env/
+new_venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Environment files
+.env
+
+# Logs and temp
+*.log
+*.tmp
+
+# Generated / cached files
+
+download_status.json
+music_api_cache.json
+*.dummy.*
+dummy.*
+
+# Downloads and old code
+downloads/
+old/
+
+# tools directory ignore (entire subtree)
+tools/venv/
+tools/env/
+tools/.env
+tools/.env.example
+tools/**/__pycache__/
+tools/**/*.pyc
+tools/**/*.py[cod]
+tools/**/node_modules/
+tools/**/*.md
+tools/**/*.js
+tools/**/.DS_Store
+tools/**/*.log
+tools/**/dist/
+tools/**/build/
+tools/**/.vscode/
+tools/**/.idea/
