@@ -33,6 +33,12 @@ python enrich_metadata.py "D:\\music\\song.mp3" -y
 python fix_album_art.py "D:\\music\\song.mp3"
 ```
 
+One-command local checkup:
+
+```bash
+python pre_push.py
+```
+
 ## Notes
 
 - In integrated mode, scripts reuse backend modules from `spoflac_core` and `utils`.
@@ -41,3 +47,8 @@ python fix_album_art.py "D:\\music\\song.mp3"
   - `pyacoustid`
   - `fpcalc` installed and available in PATH
   - `ACOUSTID_API_KEY`
+
+## Contribution & CI
+
+- Contribution rules: `CONTRIBUTING.md`
+- GitHub Actions checkup workflow: `.github/workflows/checkup.yml`
