@@ -38,9 +38,24 @@ from typing import Optional, Dict, Any, Tuple
 import logging
 from datetime import datetime
 from io import BytesIO
-from PIL import Image
 import io
 import traceback
+
+# Handle --help early before attempting heavy imports that might fail
+if '-h' in sys.argv or '--help' in sys.argv:
+    print(__doc__)
+    print("\nExamples:")
+    print('  python fix_album_art.py                                    # Fix all music')
+    print('  python fix_album_art.py --dry-run                          # Preview only')
+    print('  python fix_album_art.py --limit 50                         # Test on 50 files')
+    print('  python fix_album_art.py --folder "B:\\music\\Artist"       # Specific folder')
+    sys.exit(0)
+
+try:
+    from PIL import Image
+except ImportError:
+    print("Error: Pillow library not installed. Install with: pip install Pillow", file=sys.stderr)
+    sys.exit(1)
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(BACKEND_DIR))

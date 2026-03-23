@@ -40,8 +40,31 @@ from datetime import datetime
 import subprocess
 import re
 import time
-from langdetect import detect, detect_langs, LangDetectException
-from dotenv import load_dotenv
+
+# Handle --help early before attempting heavy imports that might fail
+if '-h' in sys.argv or '--help' in sys.argv:
+    print(__doc__)
+    print("\nExample:")
+    print('  python enrich_metadata.py "B:\\music\\All\\Sahara.mp3"')
+    print('  python enrich_metadata.py "B:\\music\\All\\Sahara.mp3" -y  # Auto-update')
+    print('  python enrich_metadata.py "B:\\music\\All"             # Process entire folder')
+    print('  python enrich_metadata.py "B:\\music\\All" -y          # Auto-update folder')
+    print('  python enrich_metadata.py "B:\\music\\All" --limit 10  # Test with 10 files')
+    print('  python enrich_metadata.py "B:\\music\\All" --skip 200 -y  # Resume from file 201')
+    sys.exit(0)
+
+try:
+    from langdetect import detect, detect_langs, LangDetectException
+except ImportError:
+    detect = None
+    
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    def load_dotenv():
+        pass
+    load_dotenv()
 
 load_dotenv()
 
@@ -53,10 +76,14 @@ except ImportError:
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(BACKEND_DIR))
 
-from mutagen.mp3 import MP3
-from mutagen.flac import FLAC
-from mutagen.mp4 import MP4
-from mutagen.id3 import ID3
+try:
+    from mutagen.mp3 import MP3
+    from mutagen.flac import FLAC
+    from mutagen.mp4 import MP4
+    from mutagen.id3 import ID3
+except ImportError as e:
+    print(f"Error: mutagen library not installed. Install with: pip install mutagen", file=sys.stderr)
+    sys.exit(1)
 
 try:
     from spoflac_core.modules.platform_metadata import (
@@ -2001,17 +2028,6 @@ def show_metadata_diff(before: Dict[str, Any], after: Dict[str, Any]):
 
 
 def main():
-    if '-h' in sys.argv or '--help' in sys.argv:
-        print(__doc__)
-        print("\nExample:")
-        print('  python enrich_metadata.py "B:\\music\\All\\Sahara.mp3"')
-        print('  python enrich_metadata.py "B:\\music\\All\\Sahara.mp3" -y  # Auto-update')
-        print('  python enrich_metadata.py "B:\\music\\All"             # Process entire folder')
-        print('  python enrich_metadata.py "B:\\music\\All" -y          # Auto-update folder')
-        print('  python enrich_metadata.py "B:\\music\\All" --limit 10  # Test with 10 files')
-        print('  python enrich_metadata.py "B:\\music\\All" --skip 200 -y  # Resume from file 201')
-        sys.exit(0)
-
     if len(sys.argv) < 2:
         print(__doc__)
         print("\nExample:")
