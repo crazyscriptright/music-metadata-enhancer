@@ -29,9 +29,9 @@ jobs:
 
       - name: Critical module check
         run: |
-          python -m py_compile enrich_metadata.py fix_album_art.py picard_fallback_enricher.py standalone_compat.py
+          python -m py_compile music_metadata_enhancer/enrich_metadata.py music_metadata_enhancer/fix_album_art.py music_metadata_enhancer/picard_fallback_enricher.py music_metadata_enhancer/standalone_compat.py
 
       - name: CLI help smoke test
         run: |
-          python enrich_metadata.py --help
-          python fix_album_art.py --help
+          python music_metadata_enhancer/enrich_metadata.py --help
+          python music_metadata_enhancer/fix_album_art.py --help

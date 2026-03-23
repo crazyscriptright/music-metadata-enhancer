@@ -1,18 +1,39 @@
-# Python
+# Bytecode / caches
 __pycache__/
 *.py[cod]
 *$py.class
-*.pyo
 
-# Build / packaging
+# Packaging / build artifacts
 build/
 dist/
+site/
 *.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+*.whl
 
 # Virtual environments
 venv/
 .venv/
 env/
+ENV/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+coverage/
+htmlcov/
+
+# Type/lint caches
+.mypy_cache/
+.ruff_cache/
+.pyre/
 
 # Environment files
 .env
@@ -25,13 +46,12 @@ env/
 *.swp
 *.swo
 
-# OS
+# OS / misc
 .DS_Store
 Thumbs.db
-
-# Logs / temp
 *.log
 *.tmp
 .tmp/
-coverage/
-.pytest_cache/
+
+# node
+package-lock.json

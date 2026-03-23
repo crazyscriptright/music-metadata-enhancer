@@ -6,10 +6,10 @@ Thanks for contributing to this standalone tools package.
 
 This repo focuses on:
 
-- `enrich_metadata.py`
-- `fix_album_art.py`
-- `picard_fallback_enricher.py`
-- `standalone_compat.py`
+- `music_metadata_enhancer/enrich_metadata.py`
+- `music_metadata_enhancer/fix_album_art.py`
+- `music_metadata_enhancer/picard_fallback_enricher.py`
+- `music_metadata_enhancer/standalone_compat.py`
 
 Keep changes scoped to metadata/artwork tooling.
 
@@ -41,9 +41,9 @@ Run these locally:
 
 ```bash
 python -m compileall -q .
-python -m py_compile enrich_metadata.py fix_album_art.py picard_fallback_enricher.py standalone_compat.py
-python enrich_metadata.py --help
-python fix_album_art.py --help
+python -m py_compile music_metadata_enhancer/enrich_metadata.py music_metadata_enhancer/fix_album_art.py music_metadata_enhancer/picard_fallback_enricher.py music_metadata_enhancer/standalone_compat.py
+python music_metadata_enhancer/enrich_metadata.py --help
+python music_metadata_enhancer/fix_album_art.py --help
 ```
 
 ## Pull Request Checklist

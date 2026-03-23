@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "music-metadata-enhancer"
+version = "0.1.0"
+description = "CLI tools to enrich audio metadata and fix album artwork"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [
+  { name = "crazyscriptright" }
+]
+keywords = ["metadata", "music", "audio", "id3", "flac", "lyrics"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent",
+  "Environment :: Console",
+  "Topic :: Multimedia :: Sound/Audio",
+  "Topic :: Utilities"
+]
+dependencies = [
+  "requests",
+  "mutagen",
+  "Pillow",
+  "langdetect",
+  "python-dotenv",
+  "musicbrainzngs",
+  "pyacoustid"
+]
+
+[project.scripts]
+mme = "music_metadata_enhancer.main:main"
+mme-enrich = "music_metadata_enhancer.main:enrich_cli"
+mme-fix-art = "music_metadata_enhancer.main:fix_art_cli"
+
+[project.urls]
+Homepage = "https://github.com/crazyscriptright"
+
+[tool.setuptools]
+packages = ["music_metadata_enhancer"]

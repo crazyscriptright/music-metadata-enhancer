@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 PY = sys.executable
 
 
@@ -28,14 +28,14 @@ def main() -> int:
             PY,
             "-m",
             "py_compile",
-            "enrich_metadata.py",
-            "fix_album_art.py",
-            "picard_fallback_enricher.py",
-            "standalone_compat.py",
+            "music_metadata_enhancer/enrich_metadata.py",
+            "music_metadata_enhancer/fix_album_art.py",
+            "music_metadata_enhancer/picard_fallback_enricher.py",
+            "music_metadata_enhancer/standalone_compat.py",
         ],
     )
-    run_step("CLI help check", [PY, "enrich_metadata.py", "--help"])
-    run_step("CLI help check", [PY, "fix_album_art.py", "--help"])
+    run_step("CLI help check", [PY, "music_metadata_enhancer/enrich_metadata.py", "--help"])
+    run_step("CLI help check", [PY, "music_metadata_enhancer/fix_album_art.py", "--help"])
 
     print("\n✅ Tools pre-push checks passed")
     return 0
