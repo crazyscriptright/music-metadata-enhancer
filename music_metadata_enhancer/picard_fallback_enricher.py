@@ -44,7 +44,10 @@ except ImportError:
 try:
     from utils.shared_api_client import query_musicbrainz_by_id, query_musicbrainz_fuzzy
 except Exception:
-    from music_metadata_enhancer.standalone_compat import query_musicbrainz_by_id, query_musicbrainz_fuzzy
+    try:
+        from music_metadata_enhancer.standalone_compat import query_musicbrainz_by_id, query_musicbrainz_fuzzy
+    except Exception:
+        from standalone_compat import query_musicbrainz_by_id, query_musicbrainz_fuzzy
 
 logger = logging.getLogger(__name__)
 

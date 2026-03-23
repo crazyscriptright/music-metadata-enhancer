@@ -68,23 +68,39 @@ try:
     from spoflac_core.modules.metadata import embed_metadata, has_timestamps
     from spoflac_core.modules.url_resolver import _romanize_lrc_lyrics, _detect_script
 except Exception:
-    from music_metadata_enhancer.standalone_compat import (
-        fetch_lyrics_with_fallbacks as _fetch_lyrics_with_fallbacks,
-        extract_featured_artists as _extract_featured_artists,
-        detect_version_type as _detect_version_type,
-        extract_tags_from_text as _extract_tags_from_text,
-        embed_metadata,
-        has_timestamps,
-        romanize_lrc_lyrics as _romanize_lrc_lyrics,
-        detect_script as _detect_script,
-    )
+    try:
+        from music_metadata_enhancer.standalone_compat import (
+            fetch_lyrics_with_fallbacks as _fetch_lyrics_with_fallbacks,
+            extract_featured_artists as _extract_featured_artists,
+            detect_version_type as _detect_version_type,
+            extract_tags_from_text as _extract_tags_from_text,
+            embed_metadata,
+            has_timestamps,
+            romanize_lrc_lyrics as _romanize_lrc_lyrics,
+            detect_script as _detect_script,
+        )
+    except Exception:
+        from standalone_compat import (
+            fetch_lyrics_with_fallbacks as _fetch_lyrics_with_fallbacks,
+            extract_featured_artists as _extract_featured_artists,
+            detect_version_type as _detect_version_type,
+            extract_tags_from_text as _extract_tags_from_text,
+            embed_metadata,
+            has_timestamps,
+            romanize_lrc_lyrics as _romanize_lrc_lyrics,
+            detect_script as _detect_script,
+        )
 
 # Import Picard fallback enricher (optional)
 try:
     from music_metadata_enhancer.picard_fallback_enricher import run_picard_fallback_enrichment, install_requirements as check_picard_requirements
     PICARD_AVAILABLE = check_picard_requirements()
 except ImportError:
-    PICARD_AVAILABLE = False
+    try:
+        from picard_fallback_enricher import run_picard_fallback_enrichment, install_requirements as check_picard_requirements
+        PICARD_AVAILABLE = check_picard_requirements()
+    except ImportError:
+        PICARD_AVAILABLE = False
 
 
 logging.basicConfig(
