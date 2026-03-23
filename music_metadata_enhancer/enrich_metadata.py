@@ -46,7 +46,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 try:
-    import requests
+    import httpx as requests
 except ImportError:
     requests = None
 

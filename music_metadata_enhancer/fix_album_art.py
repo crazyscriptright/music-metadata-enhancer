@@ -46,11 +46,11 @@ BACKEND_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(BACKEND_DIR))
 
 try:
-    import requests
+    import httpx as requests
     HAS_REQUESTS = True
 except ImportError:
     HAS_REQUESTS = False
-    print("⚠️  WARNING: requests library not found. Install with: pip install requests")
+    print("WARNING: httpx library not found. Install with: pip install httpx")
 
 try:
     from mutagen.flac import FLAC, Picture
@@ -60,7 +60,7 @@ try:
     HAS_MUTAGEN = True
 except ImportError:
     HAS_MUTAGEN = False
-    print("⚠️  WARNING: mutagen library not found. Install with: pip install mutagen")
+    print("WARNING: mutagen library not found. Install with: pip install mutagen")
 
 
 logging.basicConfig(

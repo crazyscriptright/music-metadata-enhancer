@@ -55,7 +55,7 @@ python music_metadata_enhancer/pre_push.py
 
 ## Publish-ready Scaffolding
 
-This folder now contains both release tracks:
+This folder contains the Python release track:
 
 Python package structure:
 
@@ -76,11 +76,3 @@ music-metadata-enhancer/
     - `mme-enrich`
     - `mme-fix-art`
 
-- **npm wrapper**: `package.json` + `bin/`
-  - Packs Node CLIs that call local Python scripts.
-  - CLI entry points after install:
-    - `mme-enrich`
-    - `mme-fix-art`
-  - Publish: `npm publish`
-
-> Note: npm package requires Python 3 installed on the target machine.

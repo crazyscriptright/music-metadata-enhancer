@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 try:
-    import requests
+    import httpx as requests
 except Exception:
     requests = None
 

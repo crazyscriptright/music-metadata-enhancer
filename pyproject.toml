@@ -22,7 +22,7 @@ classifiers = [
   "Topic :: Utilities"
 ]
 dependencies = [
-  "requests",
+  "httpx",
   "mutagen",
   "Pillow",
   "langdetect",
